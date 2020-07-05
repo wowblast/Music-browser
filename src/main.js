@@ -1,8 +1,14 @@
 import Vue from 'vue'
-import App from './App.vue'
+import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm'
+import App from 'App.vue'
 
-Vue.config.productionTip = false
+// Import the styles directly. (Or you could add them via script tags.)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-new Vue({
-  render: function (h) { return h(App) }
-}).$mount('#app')
+Vue.use(BootstrapVue)
+
+Vue({
+  el: '#app',
+  render: h => h(App)
+})

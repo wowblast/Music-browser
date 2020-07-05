@@ -1,15 +1,14 @@
 <template>
-  <div id="app">
-
+  <div>
     <MusicBrowser></MusicBrowser>
+
   </div>
 </template>
 
 <script>
-import MusicBrowser from './views/MusicBrowser.vue'
+import MusicBrowser from './components/MusicBrowser.vue'
 
 export default {
-  name: 'App',
   components: {
     MusicBrowser
   }
