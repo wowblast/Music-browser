@@ -1,32 +1,53 @@
 <template>
-  <div>
-  <MusicCard></MusicCard>
-  <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-</div>
+  <div class="container">
+    <div>
+      <h1 class="text-center">{{title}}</h1>
+    </div>
+    <div class="d-flex justify-content-center align-items-center container">
+      <div class="row">
+        <form action>
+          <div class="form-group">
+            <label for="inputMusic" class="control-label">Enter music name</label>
+            <input class="form-control" id="inputMusic" />
+          </div>
+          <button type="button" class="btn btn-primary" v-on:click="search()">Search</button>
+        </form>
+      </div>
+    </div>
+    <div>
 
+        <div v-for="item in musicList" :key="item.artistId" class="d-flex justify-content-center align-items-center container ">
+          <MusicCard></MusicCard>
+        </div>
+
+    </div>
+
+  </div>
 </template>
 
 <script>
 import MusicCard from '../components/MusicCard.vue'
+import axios from 'axios'
 
 export default {
+  data () {
+    return {
+      title: 'Music  Browser',
+      musicList: [{ ada: 'dad' }, { data: 'dad' }]
+    }
+  },
   components: {
     MusicCard
+  },
+  methods: {
+    search (inputMusic) {
+      axios
+        .get('https://itunes.apple.com/search?term=jack+johnson')
+        .then(result => {
+          console.log(result.data.results)
+          this.musicList = result.data.results
+        })
+    }
   }
 }
 </script>
