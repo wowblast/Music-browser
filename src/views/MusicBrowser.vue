@@ -16,9 +16,8 @@
     </div>
     <div>
 
-        <div v-for="item in musicList" :key="item.artistId" class="d-flex justify-content-center align-items-center container ">
-          <MusicCard></MusicCard>
-        </div>
+        <div v-for="(music, index) in this.musicList" :key="index" class="d-flex justify-content-center align-items-center container ">
+ <MusicCard v-bind:musicData="music"></MusicCard>        </div>
 
     </div>
 
@@ -33,7 +32,7 @@ export default {
   data () {
     return {
       title: 'Music  Browser',
-      musicList: [{ ada: 'dad' }, { data: 'dad' }]
+      musicList: [{ data: 'd' }]
     }
   },
   components: {
