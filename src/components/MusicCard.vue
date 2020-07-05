@@ -5,16 +5,25 @@
       v-bind:img-src="this.musicData.artworkUrl100"
       img-top
       tag="article"
-      style="max-width: 20rem;"
-      class="mb-2"
+      style="max-width: 15rem;"
+      class="mb-1"
     >
       <b-card-text>Artist Name: {{this.musicData.artistName}}</b-card-text>
       <b-card-text>Album Name: {{this.musicData.collectionName}}</b-card-text>
       <b-card-text>trackPrice: {{this.musicData.trackPrice}}</b-card-text>
       <b-card-text>Duration: {{ this.getDuration(this.musicData.trackTimeMillis)}}</b-card-text>
-
-      <b-button class="mx-1" href="#" variant="primary" v-on:click="playSong()">Play preview</b-button>
-      <b-button class="mx-1" href="#" variant="primary" v-on:click="stopSong()">Stop preview</b-button>
+      <div class="row">
+        <button
+          type="button"
+          class="mx-auto p-2 btn btn-success"
+          v-on:click="playSong()"
+        >Play preview</button>
+        <button
+          type="button"
+          class="btn btn-danger mx-auto p-2"
+          v-on:click="stopSong()"
+        >Stop preview</button>
+      </div>
     </b-card>
     <div></div>
   </div>
@@ -30,6 +39,7 @@ export default {
   },
   methods: {
     playSong () {
+      this.audio = new Audio(this.musicData.previewUrl)
       this.audio.play()
     },
     stopSong () {
