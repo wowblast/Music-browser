@@ -1,7 +1,9 @@
 import { expect } from 'chai'
 import { shallowMount } from '@vue/test-utils'
 import MusicTable from '@/components/MusicTable.vue'
-
+import Vue from 'vue'
+Vue.config.silent = true
+// this should actually be the default but the default is not working
 let wrapper
 
 describe('MusicTable.vue', () => {

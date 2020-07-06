@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card
-      v-bind:title="musicData.trackName"
+      v-bind:title="this.musicData.trackName"
       v-bind:img-src="this.musicData.artworkUrl100"
       img-top
       tag="article"
@@ -31,10 +31,14 @@
 <script>
 export default {
   name: 'MusicCard',
-  props: ['musicData'],
+  props: {
+    musicData: {
+      default: { trackName: '', artworkUrl100: '', artistName: '', collectionName: '', trackPrice: '', trackTimeMillis: '' }
+    }
+  },
   data () {
     return {
-      audio: undefined
+      audio: ''
     }
   },
   methods: {
@@ -50,9 +54,7 @@ export default {
       var seconds = ((miliseconds % 60000) / 1000).toFixed(0)
       return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
     }
-  },
-  mounted () {
-    this.audio = new Audio(this.musicData.previewUrl)
   }
 }
+
 </script>

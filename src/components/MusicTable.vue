@@ -106,8 +106,12 @@ export default {
       this.currentPage = 1
     },
     playSong (url) {
-      this.audio = new Audio(url)
-      this.audio.play()
+      try {
+        this.audio = new Audio(url)
+        this.audio.play()
+      } catch (error) {
+        console.log(error)
+      }
     },
     stopSong () {
       this.audio.pause()
