@@ -14,11 +14,11 @@
         </form>
       </div>
     </div>
-    <MusicTable></MusicTable>
-     <div class="row">
-    <div v-for="(music, index) in this.musicList" :key="index">
+    <MusicTable v-bind:musicData="this.musicList"></MusicTable>
+    <div class="row">
+      <div v-for="(music, index) in this.musicList" :key="index">
         <div class="col">
-        <MusicCard v-bind:musicData="music"></MusicCard>
+          <MusicCard v-bind:musicData="music"></MusicCard>
         </div>
       </div>
     </div>
@@ -46,12 +46,9 @@ export default {
   },
   methods: {
     search () {
-      console.log(this.searchInput)
-      console.log(config.iTuneHttpLink)
       var searchData = this.searchInput.replace(' ', '+')
       this.searchInput = ''
       axios.get(config.iTuneHttpLink + searchData).then(result => {
-        console.log(result.data.results)
         this.musicList = result.data.results
       })
     }
