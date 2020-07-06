@@ -1,21 +1,21 @@
 <template>
   <div class="container">
     <div>
-      <h1 class="text-center">{{title}}</h1>
+      <h1 id="title" class="text-center">{{title}}</h1>
     </div>
     <div class="d-flex justify-content-center align-items-center container">
       <div class="row">
-        <form action>
+        <form id="searchForm" action>
           <div class="form-group">
             <label for="inputMusic" class="control-label">Enter music name</label>
             <input class="form-control" id="inputMusic" v-model="searchInput" />
           </div>
-          <button type="button" class="btn btn-primary" v-on:click="search()">Search</button>
+          <button type="button" class="btn btn-primary" id="searchButton" v-on:click="search()">Search</button>
         </form>
       </div>
     </div>
     <MusicTable v-bind:musicData="this.musicList"></MusicTable>
-    <div class="row">
+    <div class="row" id="cardList">
       <div v-for="(music, index) in this.musicList" :key="index">
         <div class="col">
           <MusicCard v-bind:musicData="music"></MusicCard>
@@ -33,9 +33,10 @@ import axios from 'axios'
 import config from '../config.json'
 
 export default {
+  name: 'MusicBrowser',
   data () {
     return {
-      title: 'Music  Browser',
+      title: 'Music Browser',
       musicList: [],
       searchInput: ''
     }

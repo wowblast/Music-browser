@@ -1,7 +1,7 @@
 <template>
-  <b-container fluid>
-    <b-row>
-      <b-col sm="7" md="6" class="my-1">
+  <div class="container" fluid id="tableContainer" name="tableContainer">
+    <div class="row" id="tableRow">
+      <div class="col my-1" sm="7" md="6">
         <b-pagination
           v-model="currentPage"
           v-bind:total-rows="getTotalRows"
@@ -9,9 +9,10 @@
           align="fill"
           size="sm"
           class="my-0"
+          id="pagination"
         ></b-pagination>
-      </b-col>
-    </b-row>
+      </div>
+    </div>
 
     <b-table
       small
@@ -40,11 +41,12 @@
         >Stop preview</button>
       </template>
     </b-table>
-  </b-container>
+  </div>
 </template>
 
 <script>
 export default {
+  name: 'MusicTable',
   props: ['musicData'],
   data () {
     return {
@@ -76,7 +78,7 @@ export default {
           sortable: true
         },
 
-        { key: 'previewUr', label: 'Actions' },
+        { key: 'previewUrl', label: 'Actions' },
         {
           key: 'artworkUrl100',
           label: 'Image'
@@ -95,11 +97,8 @@ export default {
   },
   computed: {
     getTotalRows () {
-      return this.musicData.length
+      return this.musicData !== undefined ? this.musicData.length : 0
     }
-  },
-  mounted () {
-    this.items = this.musicData
   },
   methods: {
     onFiltered (filteredItems) {
